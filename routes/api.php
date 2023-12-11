@@ -20,7 +20,7 @@ Route::get('/book_by_author/{id}', function (string $id) {
     return BookResource::collection(
         Book::with('author')->whereHas('author',function($query) use(&$id){
             $query->where('id','=',$id);
-        })->get()
+        })->orderBy('book_name')->get()
     );
 });
 
